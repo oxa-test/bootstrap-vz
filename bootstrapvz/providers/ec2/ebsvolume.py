@@ -34,7 +34,7 @@ class EBSVolume(Volume):
         self.fsm.attach(instance_id=instance_id)
 
     def _before_attach(self, e):
-        import os
+        import os.path
         import string
         import urllib2
 
