@@ -23,6 +23,7 @@ class EBSVolume(Volume):
         if e.encrypted and e.kms_key_id:
             params['KmsKeyId'] = e.kms_key_id
 
+        print("Params: %s" % params)
         self.volume = self.conn.create_volume(**params)
 
         self.vol_id = self.volume['VolumeId']

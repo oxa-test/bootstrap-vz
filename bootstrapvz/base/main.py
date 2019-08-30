@@ -98,6 +98,7 @@ def run(manifest, debug=False, pause_on_error=False, dry_run=False):
     from .tasklist import load_tasks
     from .tasklist import TaskList
     log.info('Generating tasklist')
+    log.info("Manifest: %s" % manifest)
     tasks = load_tasks('resolve_tasks', manifest)
     tasklist = TaskList(tasks)
     # 'resolve_tasks' is the name of the function to call on the provider and plugins
