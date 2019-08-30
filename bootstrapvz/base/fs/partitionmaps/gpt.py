@@ -100,6 +100,7 @@ class GPTPartitionMap(AbstractPartitionMap):
         volume = event.volume
         # Disk alignment still plays a role in virtualized environment,
         # but I honestly have no clue as to what best practice is here, so we choose 'none'
+        log_check_call(['ls', '-lah', '/dev'])
         log_check_call(['parted', '--script', '--align', 'none', volume.device_path,
                         '--', 'mklabel', 'gpt'])
         # Create the partitions
