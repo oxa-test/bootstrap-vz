@@ -63,7 +63,7 @@ class Source(object):
                             '(\s+(?P<components>.+\S))?\s*$')
         match = regexp.match(line).groupdict()
         if match is None:
-            from exceptions import SourceError
+            from .exceptions import SourceError
             raise SourceError('Unable to parse source line: ' + line)
         self.type = match['type']
         self.options = []
@@ -82,11 +82,11 @@ class Source(object):
         :rtype: str
         """
         options = ''
-        if len(self.options) > 0:
+        if self.options:
             options = ' [{options}]'.format(options=' '.join(self.options))
 
         components = ''
-        if len(self.components) > 0:
+        if self.components:
             components = ' {components}'.format(components=' '.join(self.components))
 
         return ('{type}{options} {uri} {distribution}{components}'
