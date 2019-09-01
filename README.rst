@@ -1,6 +1,19 @@
 bootstrap-vz is looking for a new home
 ======================================
 
+CLARANET:
+
+This is a snapshot of https://github.com/justinsb/bootstrap-vz branch image18
+with https://github.com/andsens/bootstrap-vz/pull/486 applied.
+
+This repo is also published on https://github.com/oxa-test/bootstrap-vz to be
+publically accessible when used with kube-deploy (in the same gitlab group) repo. This is mandatory.
+
+FYI, bootstrap-vz is used by imagebuilder, the tool used to create official kops
+AMI. You can find the original source code at https://github.com/kubernetes/kube-deploy
+
+
+
 bootstrap-vz is looking for a new home.
 The reason is that I am simply not using bootstrap-vz myself very much lately,
 so any bugfixes or improvements are currently introduced via PRs only.
