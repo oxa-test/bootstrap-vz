@@ -1,4 +1,4 @@
-from abstract import AbstractPartitionMap
+from .abstract import AbstractPartitionMap
 from ..partitions.gpt import GPTPartition
 from ..partitions.gpt_swap import GPTSwapPartition
 from bootstrapvz.common.tools import log_check_call
@@ -21,7 +21,7 @@ class GPTPartitionMap(AbstractPartitionMap):
 
         # Returns the last partition unless there is none
         def last_partition():
-            return self.partitions[-1] if len(self.partitions) > 0 else None
+            return self.partitions[-1] if self.partitions else None
 
         if bootloader == 'grub':
             # If we are using the grub bootloader we need to create an unformatted partition
@@ -100,6 +100,7 @@ class GPTPartitionMap(AbstractPartitionMap):
         volume = event.volume
         # Disk alignment still plays a role in virtualized environment,
         # but I honestly have no clue as to what best practice is here, so we choose 'none'
+        log_check_call(['ls', '-lah', '/dev'])
         log_check_call(['parted', '--script', '--align', 'none', volume.device_path,
                         '--', 'mklabel', 'gpt'])
         # Create the partitions

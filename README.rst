@@ -1,3 +1,32 @@
+bootstrap-vz is looking for a new home
+======================================
+
+CLARANET:
+
+This is a snapshot of https://github.com/justinsb/bootstrap-vz branch image18
+with https://github.com/andsens/bootstrap-vz/pull/486 applied.
+
+This repo is also published on https://github.com/oxa-test/bootstrap-vz to be
+publically accessible when used with kube-deploy (in the same gitlab group) repo. This is mandatory.
+
+FYI, bootstrap-vz is used by imagebuilder, the tool used to create official kops
+AMI. You can find the original source code at https://github.com/kubernetes/kube-deploy
+
+
+
+bootstrap-vz is looking for a new home.
+The reason is that I am simply not using bootstrap-vz myself very much lately,
+so any bugfixes or improvements are currently introduced via PRs only.
+
+If you are willing to take over the project and have a track record with the
+Debian community or with the development of software like bootstrap-vz,
+kindly let me know by opening an issue that includes some references.
+There is a considerable amount of people using the software daily,
+and I would love seeing my work being continued.
+I will be happy to answer any questions regarding the code future maintainers
+might have, now and also in the coming years, so nothing will just be dumped in
+your lap :-)
+
 bootstrap-vz
 ============
 
@@ -118,7 +147,7 @@ Amazon EC2 EBS backed AMI
     user@host:~$ sudo -i # become root
     root@host:~# git clone https://github.com/andsens/bootstrap-vz.git # Clone the repo
     root@host:~# apt-get install debootstrap python-pip # Install dependencies from aptitude
-    root@host:~# pip install termcolor jsonschema fysom docopt pyyaml boto3 # Install python dependencies
+    root@host:~# pip install termcolor jsonschema fysom docopt pyyaml boto3 json_minify # Install python dependencies
     root@host:~# bootstrap-vz/bootstrap-vz bootstrap-vz/manifests/official/ec2/ebs-jessie-amd64-hvm.yml
 
 To bootstrap S3 backed AMIs, bootstrap-vz will also need the

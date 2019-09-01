@@ -25,24 +25,28 @@ class BootstrapInformation(object):
         self.workspace = os.path.join(manifest.bootstrapper['workspace'], self.run_id)
 
         # Load all the volume information
-        from fs import load_volume
+        from .fs import load_volume
         self.volume = load_volume(self.manifest.volume, manifest.system['bootloader'])
 
         # The default apt mirror
         self.apt_mirror = self.manifest.packages.get('mirror', 'http://deb.debian.org/debian/')
 
+        # The default apt security mirror
+        self.apt_security = self.manifest.packages.get('security', 'http://security.debian.org/')
+
         # Create the manifest_vars dictionary
-        self.manifest_vars = self.__create_manifest_vars(self.manifest, {'apt_mirror': self.apt_mirror})
+        self.manifest_vars = self.__create_manifest_vars(self.manifest, {'apt_security': self.apt_security,
+                                                                         'apt_mirror': self.apt_mirror})
 
         # Keep a list of apt sources,
         # so that tasks may add to that list without having to fiddle with apt source list files.
-        from pkg.sourceslist import SourceLists
+        from .pkg.sourceslist import SourceLists
         self.source_lists = SourceLists(self.manifest_vars)
         # Keep a list of apt preferences
-        from pkg.preferenceslist import PreferenceLists
+        from .pkg.preferenceslist import PreferenceLists
         self.preference_lists = PreferenceLists(self.manifest_vars)
         # Keep a list of packages that should be installed, tasks can add and remove things from this list
-        from pkg.packagelist import PackageList
+        from .pkg.packagelist import PackageList
         self.packages = PackageList(self.manifest_vars, self.source_lists)
 
         # These sets should rarely be used and specify which packages the debootstrap invocation
